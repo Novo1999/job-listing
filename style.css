@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&family=League+Spartan:wght@500;700&display=swap');
+:root {
+  --primary: hsl(180, 29%, 50%);
+  --neutral-1: hsl(180, 52%, 96%);
+  --neutral-2: hsl(180, 31%, 95%);
+  --neutral-3: hsl(180, 8%, 52%);
+  --neutral-4: hsl(180, 14%, 20%);
+  --font-size: 15px;
+  --font-family: League Spartan;
+  --font-weight-1: 500;
+  --font-weight-2: 700;
+  --transition: all 0.3s linear;
+}
+
+.header-img {
+  background-color: var(--primary);
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.item {
+  border-left: 4px solid var(--primary);
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px 1px;
+}
+.skill li {
+  list-style-type: none;
+}
+
+.designation {
+  position: relative;
+  left: -30%;
+}
+.title {
+  margin-top: 2px;
+  color: var(--primary);
+}
+.new {
+  background-color: var(--primary);
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  color: var(--neutral-1);
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-size: var(--font-size);
+}
+.featured {
+  background-color: var(--neutral-4);
+  height: 1.5rem;
+  width: 5rem;
+  text-align: center;
+  color: var(--neutral-1);
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-size: var(--font-size);
+}
+
+.category {
+  background-color: var(--neutral-1);
+  color: var(--primary);
+  font-weight: var(--font-weight-2);
+  padding: 6px 4px 6px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.category:hover {
+  color: white;
+  background-color: var(--primary);
+}
+.job:hover {
+  color: var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
