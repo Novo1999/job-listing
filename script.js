@@ -196,17 +196,21 @@ const html = function (
   <img class="w-25 h-25 mt-3" src="${logo}" alt="" />
   <div class="container d-flex gap-3 mt-3 ms-3">
     <h6 class="title fw-bold">${company}</h6>
-    <span class="${isNew === true ? 'new' : ''}">New!</span> <span class="${
+    <span class="${isNew === true ? 'new' : ''}">${
+    isNew === true ? 'new' : ''
+  } </span><span class="${isFeatured === true ? 'featured' : ''}">${
     isFeatured === true ? 'featured' : ''
-  }"> Featured</span>
+  }</span>
   </div>
-  <div class="container mt-5 ms-5 designation">
+  <div class="container mt-5 ms-5 designation d-flex flex-column">
+  <div class="to-move">
     <h1 class="fs-5 ms-1 job">${position}</h1>
     <ul class="container d-flex gap-4 ms-2">
       <li>${postedAt}</li>
       <li>${contract}</li>
       <li>${location}</li>
     </ul>
+    </div>
   </div>
 
   <div class="container stack">
@@ -216,31 +220,36 @@ const html = function (
       <li class="category category-1">${languages[0]}</li>
       <li class="category added1 category-2">${languages[1]}</li>
       <li class="category added2 category-3">${languages[2]}</li>
-      <li class="category">${tools}</li>
+      ${
+        tools.length > 1
+          ? `<li class="category">${tools[0]}</li><li class="category">${tools[1]}</li>`
+          : `<li class="category">${tools[0]}</li>`
+      }
+      
     </ul>
   </div>
 </div>
 </div>`;
 };
 
-function insertContent() {
+function insertContent(content) {
   topItem.insertAdjacentHTML(
     'afterend',
     html(
-      two.company,
-      two.logo,
-      two.new,
-      two.featured,
-      two.position,
-      two.role,
-      two.level,
-      two.postedAt,
-      two.contract,
-      two.location,
-      two.languages,
-      two.tools
+      content.company,
+      content.logo,
+      content.new,
+      content.featured,
+      content.position,
+      content.role,
+      content.level,
+      content.postedAt,
+      content.contract,
+      content.location,
+      content.languages,
+      content.tools
     )
   );
 }
 
-insertContent();
+insertContent(five);

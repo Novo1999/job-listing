@@ -11,6 +11,11 @@
   --font-weight-2: 700;
   --transition: all 0.3s linear;
 }
+.html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .header-img {
   background-color: var(--primary);
@@ -25,7 +30,9 @@
 .skill li {
   list-style-type: none;
 }
-
+.skill {
+  margin-left: -5rem;
+}
 .designation {
   position: relative;
   left: -30%;
