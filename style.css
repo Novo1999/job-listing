@@ -35,9 +35,11 @@
   width: 100%;
   margin-bottom: 2rem;
 }
-.item {
+.exclusiveBorder {
   border-left: 4px solid var(--primary);
   border-radius: 4px;
+}
+.item {
   box-shadow: 1px 1px 10px 1px;
 }
 .skill li {

@@ -1,5 +1,5 @@
 'use strict';
-const header = document.querySelector('.header-img-container');
+
 const category = document.querySelectorAll('.category');
 const category2 = document.querySelector('.category-2');
 const stack = document.querySelector('.stack');
@@ -245,10 +245,9 @@ function HTMLlogic(lang1, lang2, lang3, tool0, tool1) {
   }
 }
 
-let item = 0;
-
+const headerId = document.querySelector('.header-img-container-0');
 function insertContent(content) {
-  header.insertAdjacentHTML(
+  headerId.insertAdjacentHTML(
     'afterend',
     html(
       content.company,
@@ -268,11 +267,16 @@ function insertContent(content) {
   const category3 = document.querySelector('.category-3');
   if (!category3) {
     category3.style.display = 'none';
-    // stack.classList.remove('stack');
   }
 }
 
-insertContent(one);
+const numbers = [ten, nine, eight, seven, six, five, four, three, two, one];
 
+numbers.forEach(number => insertContent(number));
 
-
+const items = document.querySelectorAll('.item');
+items.forEach((item, index) => {
+  if (data[index].new && data[index].featured) {
+    item.classList.add('exclusiveBorder');
+  }
+});
