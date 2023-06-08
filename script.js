@@ -2,7 +2,7 @@
 
 const category = document.querySelectorAll('.category');
 const category2 = document.querySelector('.category-2');
-const stack = document.querySelector('.stack');
+
 // Language Visibility
 
 const data = [
@@ -199,7 +199,7 @@ const html = function (
     isFeatured ? 'featured' : ''
   }</span></h6>
         </div>
-        <h5>${position}</h5>
+        <h5 class="effect">${position}</h5>
         <div class="list">
           <ul class="d-flex gap-4">
             <li class="list-unstyled">${postedAt}</li>
@@ -280,3 +280,38 @@ items.forEach((item, index) => {
     item.classList.add('exclusiveBorder');
   }
 });
+
+const stack = document.querySelectorAll('.stack');
+
+// filter
+function insertIntoFilter(item) {
+  const filter = document.querySelector('.filter');
+
+  const newDiv = document.createElement('div');
+
+  newDiv.innerHTML = `<div class="d-flex filter-item ms-4 gap-3">
+  <h6 class="filter-type ms-2">${item}</h6>
+  <button class="border-0 close">❌</button>
+  </div>`;
+
+  filter.append(newDiv);
+}
+
+stack.forEach(el =>
+  el.addEventListener('click', e => {
+    if (e.target.classList.contains('skill')) return;
+    insertIntoFilter(e.target.textContent);
+    const close = document.querySelector('.close');
+    const filterItem = document.querySelectorAll('.filter-item');
+    console.log(filterItem);
+    console.log(close);
+
+    filterItem.forEach(item =>
+      item.addEventListener('click', e => {
+        if (e.target.classList.contains('close')) {
+          item.remove();
+        }
+      })
+    );
+  })
+);

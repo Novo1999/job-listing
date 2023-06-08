@@ -11,6 +11,13 @@
   --font-weight-2: 700;
   --transition: all 0.3s linear;
 }
+.effect {
+  cursor: pointer;
+  transition: var(--transition);
+}
+.effect:hover {
+  color: var(--primary);
+}
 .html {
   box-sizing: border-box;
   margin: 0;
@@ -78,6 +85,31 @@
   padding: 0 10px 0 10px;
 }
 
+/* Filter */
+.filter {
+  box-shadow: 1px 1px 10px 1px;
+}
+.filter-type {
+  padding-top: 3px;
+}
+.filter-item {
+  padding-top: 4px;
+  height: 2.2rem;
+  box-shadow: 1px 1px 5px 1px;
+  border-radius: 0.3rem;
+}
+.filter-item h6 {
+  color: var(--primary);
+  height: 1.8rem;
+}
+.filter-item button {
+  height: 2.2rem;
+  position: relative;
+  bottom: 4.3px;
+  border-radius: 5px;
+}
+
+/* Category */
 .category {
   background-color: var(--neutral-1);
   color: var(--primary);
@@ -88,9 +120,6 @@
   transition: var(--transition);
 }
 
-/* .category-3 {
-  display: none;
-} */
 .category:hover {
   color: white;
   background-color: var(--primary);
@@ -100,6 +129,13 @@
   cursor: pointer;
   transition: var(--transition);
 }
-/* .stack {
-  margin-left: 3.5rem;
-} */
+
+.filter {
+  width: 60%;
+  height: 4rem;
+  background-color: var(--neutral-1);
+  position: relative;
+  bottom: 2100px;
+  margin-left: 23rem;
+  border-radius: 10px;
+}
