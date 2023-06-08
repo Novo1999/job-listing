@@ -1,15 +1,9 @@
 'use strict';
-const topItem = document.querySelector('.top-item');
+const header = document.querySelector('.header-img-container');
 const category = document.querySelectorAll('.category');
 const category2 = document.querySelector('.category-2');
-const category3 = document.querySelector('.category-3');
 const stack = document.querySelector('.stack');
 // Language Visibility
-if (category2 && category3) {
-  category2.style.display = 'block';
-  category3.style.display = 'block';
-  stack.classList.remove('stack');
-}
 
 const data = [
   {
@@ -176,6 +170,7 @@ let [one, two, three, four, five, six, seven, eight, nine, ten] = [
   data[8],
   data[9],
 ];
+
 const html = function (
   company,
   logo,
@@ -190,50 +185,70 @@ const html = function (
   languages,
   tools
 ) {
-  return `<div class="container mt-4">
-<!-- Item Start -->
-<div class="container item d-flex ps-3 pt-1 pb-1">
-  <img class="w-25 h-25 mt-3" src="${logo}" alt="" />
-  <div class="container d-flex gap-3 mt-3 ms-3">
-    <h6 class="title fw-bold">${company}</h6>
-    <span class="${isNew === true ? 'new' : ''}">${
-    isNew === true ? 'new' : ''
-  } </span><span class="${isFeatured === true ? 'featured' : ''}">${
-    isFeatured === true ? 'featured' : ''
-  }</span>
-  </div>
-  <div class="container mt-5 ms-5 designation d-flex flex-column">
-  <div class="to-move">
-    <h1 class="fs-5 ms-1 job">${position}</h1>
-    <ul class="container d-flex gap-4 ms-2">
-      <li>${postedAt}</li>
-      <li>${contract}</li>
-      <li>${location}</li>
-    </ul>
+  return `<div class="container p-4 item mb-5">
+  <div class="row">
+    <div class="col">
+      <img src="${logo}" alt="" />
+      <div class="group">
+        <div class="d-flex gap-3">
+          <h6 class="company">${company}</h6>
+          <h6><span class="${isNew ? 'new' : ''}">${
+    isNew ? 'new!' : ''
+  }</span></h6>
+          <h6><span class="${isFeatured ? 'featured' : ''}">${
+    isFeatured ? 'featured' : ''
+  }</span></h6>
+        </div>
+        <h5>${position}</h5>
+        <div class="list">
+          <ul class="d-flex gap-4">
+            <li class="list-unstyled">${postedAt}</li>
+            <li>${contract}</li>
+            <li>${location}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="container stack">
+        <ul class="skill d-flex gap-4">
+          <li class="category role">${role}</li>
+          <li class="category level">${level}</li>
+          ${
+            languages[0] && languages[1] && languages[2]
+              ? `<li class="category category-1">${languages[0]}</li>
+          <li class="category category-2">${languages[1]}</li>
+          <li class="category category-3">${languages[2]}</li>`
+              : HTMLlogic(
+                  languages[0],
+                  languages[1],
+                  languages[2],
+                  tools[0],
+                  tools[1]
+                )
+          }
+        </ul>
+      </div>
     </div>
   </div>
-
-  <div class="container stack">
-    <ul class="skill d-flex gap-4 mt-5">
-      <li class="category role">${role}</li>
-      <li class="category level">${level}</li>
-      <li class="category category-1">${languages[0]}</li>
-      <li class="category added1 category-2">${languages[1]}</li>
-      <li class="category added2 category-3">${languages[2]}</li>
-      ${
-        tools.length > 1
-          ? `<li class="category">${tools[0]}</li><li class="category">${tools[1]}</li>`
-          : `<li class="category">${tools[0]}</li>`
-      }
-      
-    </ul>
-  </div>
-</div>
 </div>`;
 };
 
+function HTMLlogic(lang1, lang2, lang3, tool0, tool1) {
+  if (!(lang1 && lang2 && lang3)) {
+    return `<li class="category category-1">${lang1}</li>
+  <li class="category category-2">${lang2 ? lang2 : tool0}</li>
+  ${lang2 && tool0 ? `<li class="category category-3">${tool0}</li>` : ''}
+  ${
+    tool1 ? `<li class="category category-3">${lang3 ? lang3 : tool1}</li>` : ''
+  }`;
+  }
+}
+
+let item = 0;
+
 function insertContent(content) {
-  topItem.insertAdjacentHTML(
+  header.insertAdjacentHTML(
     'afterend',
     html(
       content.company,
@@ -250,6 +265,14 @@ function insertContent(content) {
       content.tools
     )
   );
+  const category3 = document.querySelector('.category-3');
+  if (!category3) {
+    category3.style.display = 'none';
+    // stack.classList.remove('stack');
+  }
 }
 
-insertContent(five);
+insertContent(one);
+
+
+
