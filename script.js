@@ -1,6 +1,5 @@
 'use strict';
 
-const category = document.querySelectorAll('.category');
 const category2 = document.querySelector('.category-2');
 
 // Language Visibility
@@ -158,6 +157,7 @@ const data = [
   },
 ];
 
+// Destructuring the data
 let [one, two, three, four, five, six, seven, eight, nine, ten] = [
   data[0],
   data[1],
@@ -234,6 +234,7 @@ const html = function (
 </div>`;
 };
 
+// function for inner HTML
 function HTMLlogic(lang1, lang2, lang3, tool0, tool1) {
   if (!(lang1 && lang2 && lang3)) {
     return `<li class="category category-1">${lang1}</li>
@@ -245,6 +246,7 @@ function HTMLlogic(lang1, lang2, lang3, tool0, tool1) {
   }
 }
 
+// Dynamically creating the jobs -- function
 const headerId = document.querySelector('.header-img-container-0');
 function insertContent(content) {
   headerId.insertAdjacentHTML(
@@ -270,10 +272,13 @@ function insertContent(content) {
   }
 }
 
+// Insert the HTML into the divs
 const numbers = [ten, nine, eight, seven, six, five, four, three, two, one];
 
+console.log(numbers[0]);
 numbers.forEach(number => insertContent(number));
 
+// Border for the new and featured jobs
 const items = document.querySelectorAll('.item');
 items.forEach((item, index) => {
   if (data[index].new && data[index].featured) {
@@ -283,10 +288,25 @@ items.forEach((item, index) => {
 
 const stack = document.querySelectorAll('.stack');
 
-// filter
-function insertIntoFilter(item) {
-  const filter = document.querySelector('.filter');
+// All Stack elements
+const arr = [];
 
+data.forEach(data => {
+  arr.push(data.role);
+  arr.push(...data.languages);
+  arr.push(...data.tools);
+});
+
+let uniqueArr = arr.filter(
+  (value, index, array) => array.indexOf(value) === index
+);
+
+// console.log(uniqueArr);
+
+// filter function
+const filter = document.querySelector('.filter');
+
+function insertIntoFilter(item) {
   const newDiv = document.createElement('div');
 
   newDiv.innerHTML = `<div class="d-flex filter-item ms-4 gap-3">
@@ -297,14 +317,12 @@ function insertIntoFilter(item) {
   filter.append(newDiv);
 }
 
+// Adding and removing filter items into filter section
 stack.forEach(el =>
   el.addEventListener('click', e => {
     if (e.target.classList.contains('skill')) return;
     insertIntoFilter(e.target.textContent);
-    const close = document.querySelector('.close');
     const filterItem = document.querySelectorAll('.filter-item');
-    console.log(filterItem);
-    console.log(close);
 
     filterItem.forEach(item =>
       item.addEventListener('click', e => {
@@ -313,5 +331,18 @@ stack.forEach(el =>
         }
       })
     );
+  })
+);
+
+// Select all items
+stack.forEach(el =>
+  el.addEventListener('click', e => {
+    // console.log(e.target.textContent);
+  })
+);
+// for items containing a certain skill, display only those items that has that skill
+items.forEach(item =>
+  item.addEventListener('click', e => {
+    // console.log(e.target.textContent);
   })
 );
