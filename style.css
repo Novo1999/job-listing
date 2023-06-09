@@ -134,8 +134,9 @@
   width: 60%;
   height: 4rem;
   background-color: var(--neutral-1);
-  position: relative;
-  bottom: 2100px;
+  position: absolute;
+  bottom: 45rem;
   margin-left: 23rem;
   border-radius: 10px;
+  z-index: 999;
 }

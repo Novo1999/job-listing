@@ -270,22 +270,18 @@ function insertContent(content) {
   if (!category3) {
     category3.style.display = 'none';
   }
+  // Border for the new and featured jobs
 }
 
 // Insert the HTML into the divs
 const numbers = [ten, nine, eight, seven, six, five, four, three, two, one];
-
-console.log(numbers[0]);
 numbers.forEach(number => insertContent(number));
-
-// Border for the new and featured jobs
-const items = document.querySelectorAll('.item');
-items.forEach((item, index) => {
-  if (data[index].new && data[index].featured) {
-    item.classList.add('exclusiveBorder');
+const items = document.querySelectorAll('.featured');
+items.forEach(item => {
+  if (item.classList.contains('featured')) {
+    item.closest('.item').classList.add('exclusiveBorder');
   }
 });
-
 const stack = document.querySelectorAll('.stack');
 
 // All Stack elements
@@ -343,6 +339,6 @@ stack.forEach(el =>
 // for items containing a certain skill, display only those items that has that skill
 items.forEach(item =>
   item.addEventListener('click', e => {
-    // console.log(e.target.textContent);
+    console.log(e.target.textContent);
   })
 );
