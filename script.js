@@ -287,17 +287,17 @@ featured.forEach(item => {
 const stack = document.querySelectorAll('.stack .category');
 
 // All Stack elements
-const arr = [];
+// const arr = [];
 
-data.forEach(data => {
-  arr.push(data.role);
-  arr.push(...data.languages);
-  arr.push(...data.tools);
-});
+// data.forEach(data => {
+//   arr.push(data.role);
+//   arr.push(...data.languages);
+//   arr.push(...data.tools);
+// });
 
-let uniqueArr = arr.filter(
-  (value, index, array) => array.indexOf(value) === index
-);
+// let uniqueArr = arr.filter(
+//   (value, index, array) => array.indexOf(value) === index
+// );
 
 // console.log(uniqueArr);
 
@@ -354,45 +354,23 @@ stack.forEach(el =>
 // Select all items
 stack.forEach(el =>
   el.addEventListener('click', e => {
-    console.log(items);
-    items.forEach(item => (item.style.display = 'none'));
-    if (e.target.textContent === filterTypeText) {
-      console.log(e.target.closest('.item'));
-      el.closest('.item').style.display = 'block';
-    }
-  })
-);
-
-// const stackArr = [];
-// stack.forEach(el => {
-//   console.log(el.textContent);
-//   stackArr.push(el.textContent);
-// });
-// console.log(stackArr);
-
-// const chunkSize = 5; // Desired number of items in each sub-array
-// const subArrays = [];
-// let currentSubArray = [];
-
-// stackArr.forEach((item, index) => {
-//   currentSubArray.push(item);
-
-//   if (currentSubArray.length === chunkSize || index === stackArr.length - 1) {
-//     subArrays.push(currentSubArray);
-//     currentSubArray = [];
-//   }
-// });
-
-// console.log(subArrays);
-
-// for items containing a certain skill, display only those items that has that skill
-items.forEach(item =>
-  item.addEventListener('click', e => {
-    // console.log(e.target.textContent);
+    checkFilterItems(e, el, filterTypeText);
   })
 );
 
 // filter jobs
+
+function checkFilterItems(e, el, filterTypeText) {
+  items.forEach(item => (item.style.display = 'none'));
+  if (e.target.textContent === filterTypeText) {
+    el.closest('.item').style.display = 'block';
+    items.forEach(item => {
+      if (item.textContent.includes(`${filterTypeText}`)) {
+        item.style.display = 'block';
+      }
+    });
+  }
+}
 
 const category = document.querySelectorAll('.category');
 category.forEach(cat => {
