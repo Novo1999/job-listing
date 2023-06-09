@@ -270,19 +270,21 @@ function insertContent(content) {
   if (!category3) {
     category3.style.display = 'none';
   }
-  // Border for the new and featured jobs
 }
 
 // Insert the HTML into the divs
 const numbers = [ten, nine, eight, seven, six, five, four, three, two, one];
 numbers.forEach(number => insertContent(number));
-const items = document.querySelectorAll('.featured');
-items.forEach(item => {
+
+// Adding Borders to new items
+const featured = document.querySelectorAll('.featured');
+const items = document.querySelectorAll('.item');
+featured.forEach(item => {
   if (item.classList.contains('featured')) {
     item.closest('.item').classList.add('exclusiveBorder');
   }
 });
-const stack = document.querySelectorAll('.stack');
+const stack = document.querySelectorAll('.stack .category');
 
 // All Stack elements
 const arr = [];
@@ -300,7 +302,23 @@ let uniqueArr = arr.filter(
 // console.log(uniqueArr);
 
 // filter function
+// const filter = document.querySelector('.filter');
+
+// function insertIntoFilter(item) {
+//   const newDiv = document.createElement('div');
+
+//   newDiv.innerHTML = `<div class="d-flex filter-item ms-4 gap-3">
+//   <h6 class="filter-type ms-2">${item}</h6>
+//   <button class="border-0 close">❌</button>
+//   </div>`;
+
+//   filter.append(newDiv);
+//   const filterType = document.querySelector('.filter-type');
+//   console.log(filterType.textContent);
+// }
+
 const filter = document.querySelector('.filter');
+let filterTypeText = ''; // Declare a variable outside the function block
 
 function insertIntoFilter(item) {
   const newDiv = document.createElement('div');
@@ -311,6 +329,9 @@ function insertIntoFilter(item) {
   </div>`;
 
   filter.append(newDiv);
+  const filterType = newDiv.querySelector('.filter-type'); // Use newDiv as the context for querySelector
+  filterTypeText = filterType.textContent; // Assign the textContent to the variable
+  console.log(filterTypeText);
 }
 
 // Adding and removing filter items into filter section
@@ -333,12 +354,52 @@ stack.forEach(el =>
 // Select all items
 stack.forEach(el =>
   el.addEventListener('click', e => {
-    // console.log(e.target.textContent);
+    console.log(items);
+    items.forEach(item => (item.style.display = 'none'));
+    if (e.target.textContent === filterTypeText) {
+      console.log(e.target.closest('.item'));
+      el.closest('.item').style.display = 'block';
+    }
   })
 );
+
+// const stackArr = [];
+// stack.forEach(el => {
+//   console.log(el.textContent);
+//   stackArr.push(el.textContent);
+// });
+// console.log(stackArr);
+
+// const chunkSize = 5; // Desired number of items in each sub-array
+// const subArrays = [];
+// let currentSubArray = [];
+
+// stackArr.forEach((item, index) => {
+//   currentSubArray.push(item);
+
+//   if (currentSubArray.length === chunkSize || index === stackArr.length - 1) {
+//     subArrays.push(currentSubArray);
+//     currentSubArray = [];
+//   }
+// });
+
+// console.log(subArrays);
+
 // for items containing a certain skill, display only those items that has that skill
 items.forEach(item =>
   item.addEventListener('click', e => {
-    console.log(e.target.textContent);
+    // console.log(e.target.textContent);
   })
 );
+
+// filter jobs
+
+const category = document.querySelectorAll('.category');
+category.forEach(cat => {
+  // console.log(cat.textContent);
+  // console.log(cat.closest('.item'));
+});
+
+// make an array for each job skills
+
+// if atleast one element in the array matches with the uniqueArr, show only that arrays parent(.item)
