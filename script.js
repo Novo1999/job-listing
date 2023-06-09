@@ -301,25 +301,9 @@ const stack = document.querySelectorAll('.stack .category');
 
 // console.log(uniqueArr);
 
-// filter function
-// const filter = document.querySelector('.filter');
-
-// function insertIntoFilter(item) {
-//   const newDiv = document.createElement('div');
-
-//   newDiv.innerHTML = `<div class="d-flex filter-item ms-4 gap-3">
-//   <h6 class="filter-type ms-2">${item}</h6>
-//   <button class="border-0 close">❌</button>
-//   </div>`;
-
-//   filter.append(newDiv);
-//   const filterType = document.querySelector('.filter-type');
-//   console.log(filterType.textContent);
-// }
-
 const filter = document.querySelector('.filter');
 let filterTypeText = ''; // Declare a variable outside the function block
-
+let closeBtn;
 function insertIntoFilter(item) {
   const newDiv = document.createElement('div');
 
@@ -331,16 +315,19 @@ function insertIntoFilter(item) {
   filter.append(newDiv);
   const filterType = newDiv.querySelector('.filter-type'); // Use newDiv as the context for querySelector
   filterTypeText = filterType.textContent; // Assign the textContent to the variable
-  console.log(filterTypeText);
 }
 
 // Adding and removing filter items into filter section
+let filterItem;
+
 stack.forEach(el =>
   el.addEventListener('click', e => {
     if (e.target.classList.contains('skill')) return;
     insertIntoFilter(e.target.textContent);
-    const filterItem = document.querySelectorAll('.filter-item');
-
+    
+    
+    filterItem = document.querySelectorAll('.filter-item');
+    
     filterItem.forEach(item =>
       item.addEventListener('click', e => {
         if (e.target.classList.contains('close')) {
@@ -351,7 +338,7 @@ stack.forEach(el =>
   })
 );
 
-// Select all items
+// Select all stack items
 stack.forEach(el =>
   el.addEventListener('click', e => {
     checkFilterItems(e, el, filterTypeText);
@@ -361,6 +348,8 @@ stack.forEach(el =>
 // filter jobs
 
 function checkFilterItems(e, el, filterTypeText) {
+  closeBtn = document.querySelectorAll('.close');
+  
   items.forEach(item => (item.style.display = 'none'));
   if (e.target.textContent === filterTypeText) {
     el.closest('.item').style.display = 'block';
@@ -370,14 +359,14 @@ function checkFilterItems(e, el, filterTypeText) {
       }
     });
   }
+  
 }
 
-const category = document.querySelectorAll('.category');
-category.forEach(cat => {
-  // console.log(cat.textContent);
-  // console.log(cat.closest('.item'));
-});
+function closeBtnClickHandler(e) {
+  checkFilterItems(e);
+}
 
-// make an array for each job skills
+// when user clicks on close button -
+// checkFilterItems will run again
 
-// if atleast one element in the array matches with the uniqueArr, show only that arrays parent(.item)
+// Close button
